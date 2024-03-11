@@ -4,9 +4,11 @@ public abstract class Command {
     public Model model;
 
     public Command(Model model) {
+        this.model = model;
     }
 
-    void execute() {
+    public void execute() {
+        System.out.println("trying to execute: im in command ");
 
     }
 }

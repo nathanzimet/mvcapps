@@ -11,7 +11,7 @@ public class StopLightPanel extends AppPanel {
         super(factory);
         change = new JButton("Change");
         change.addActionListener(this);
-        change.add(change);
+        controlPanel.add(change);
     }
 
     public static void main(String[] args) {

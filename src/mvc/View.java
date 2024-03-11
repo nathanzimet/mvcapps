@@ -11,6 +11,7 @@ public class View extends JPanel implements Subscriber {
     }
 
     public void update() {
-
+        revalidate();
+        repaint();
     }
 }
