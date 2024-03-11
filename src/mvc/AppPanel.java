@@ -46,7 +46,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         menu.add(fileMenu);
         JMenu editMenu = Utilities.makeMenu("Edit", editCommands, this);
         menu.add(editMenu);
-        JMenu helpMenu = Utilities.makeMenu("Help", help, this);
+        JMenu helpMenu = Utilities.makeMenu("Help", new String[]{"Help", "About"}, this);
         menu.add(helpMenu);
 
         JFrame frame = new JFrame();
@@ -102,7 +102,6 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
                 }
 
                 case "Help": {
-                    String[] cmmds = help;
                     Utilities.inform(help);
                     break;
 
@@ -111,9 +110,13 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
 
                 default: {
                     Command newCommand = appFactory.makeEditCommand(model, cmmd, this);
-                    newCommand.execute();
-                    System.out.println("Apppanel action performed is broken, figure out how to throw exception");
-                    //throw new Exception("Unrecognized command: " + cmmd);
+                    if (newCommand != null){
+                        newCommand.execute();
+                    }
+                    else {
+                        System.out.println("Apppanel action performed is broken, figure out how to throw exception");
+                        throw new Exception("Unrecognized command: " + cmmd);
+                    }
                 }
             }
 
