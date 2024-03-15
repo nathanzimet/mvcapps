@@ -14,7 +14,7 @@ public class StoplightFactory implements AppFactory {
 
     // source added 3/15 to support text fields
     public Command makeEditCommand(Model model, String type, Object source) {
-        if (type == "Change") {
+        if (type.equals("Change")) {
             return new ChangeCommand(model);
         }
         return null;
@@ -23,7 +23,7 @@ public class StoplightFactory implements AppFactory {
     public String getTitle() { return "Stop Light Simulator"; }
 
     public String[] getHelp() {
-        return new String[] {"click Change to cycle through colors"};
+        return new String[] {"Click Change to cycle through colors"};
     }
 
     public String about() {

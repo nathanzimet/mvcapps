@@ -1,14 +1,11 @@
 package mvc;
 
 public interface AppFactory {
-
-    public Model makeModel();
-    public View makeView(Model m);
+    Model makeModel();
+    View makeView(Model m);
     String getTitle();
     String[] getHelp();
     String about();
-    public String[] getEditCommands();
-    public Command makeEditCommand(Model model, String type, Object source);
-
-
+    String[] getEditCommands();
+    Command makeEditCommand(Model model, String type, Object source);
 }

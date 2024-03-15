@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import mvc.*;
 
+import java.awt.*;
+
 
 public class StopLightPanel extends AppPanel {
     private JButton change;
@@ -11,6 +13,7 @@ public class StopLightPanel extends AppPanel {
         super(factory);
         change = new JButton("Change");
         change.addActionListener(this);
+        controlPanel.setBackground(Color.PINK);
         controlPanel.add(change);
         revalidate();
         repaint();

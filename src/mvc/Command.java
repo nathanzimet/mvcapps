@@ -7,8 +7,5 @@ public abstract class Command {
         this.model = model;
     }
 
-    public void execute() {
-        System.out.println("trying to execute: im in command ");
-
-    }
+    public abstract void execute();
 }
