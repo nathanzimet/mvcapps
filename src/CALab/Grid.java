@@ -27,6 +27,12 @@ public abstract class Grid extends Model implements Serializable {
         populate();
     }
 
+    public int getDim() { return dim; }
+    public int getTime() { return time; }
+    public Cell getCell(int row, int col) {
+        return cells[row][col];
+    }
+
     protected void populate() {
         for(int i=0; i<this.dim; i++) {
             for(int j=0; j<this.dim; j++) {
