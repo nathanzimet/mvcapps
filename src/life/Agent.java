@@ -2,7 +2,6 @@ package life;
 
 import CALab.Cell;
 
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
