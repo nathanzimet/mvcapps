@@ -13,9 +13,6 @@ import java.util.Set;
  * @author priyankagoel
  */
 public abstract class Grid extends Model implements Serializable {
-
-    private static final int[] ROW_OFFSET = new int[]{-1, -1, -1, 0, 0, 1, 1, 1};
-    private static final int[] COL_OFFSET = new int[]{-1, 0, 1, -1, 1, -1, 0, 1};
     private int time;
     private int dim;
     private Cell[][] cells;
@@ -66,16 +63,21 @@ public abstract class Grid extends Model implements Serializable {
             System.out.println("time = " + time);
         }
     }
-    private Set<Cell> getNeighbours(Cell asker) {
-        Set<Cell> neighbours = new HashSet<>();
-        int row = asker.getRow();
-        int col = asker.getCol();
-        for(int k=0; k<8; k++) {
-            int nRow = (row + ROW_OFFSET[k] + dim) % dim;
-            int nCol = (col + COL_OFFSET[k] + dim) % dim;
-            neighbours.add(this.cells[nRow][nCol]);
+
+    /**
+     * Implemented by Nathan.
+     */
+    private Set<Cell> getNeighbours(Cell asker, int radius) {
+        Set<Cell> neighbors = new HashSet<>();
+        int i = asker.getRow();
+        int j = asker.getCol();
+        for (int m = i - radius; m <= i + radius; m++) {
+            for (int n = j - radius; n <= j + radius; n++) {
+                neighbors.add(cells[(m + dim) % dim][(n + dim) % dim]);
+            }
         }
-        return neighbours;
+        neighbors.remove(cells[i][j]);
+        return neighbors;
     }
     private void interact() {
         for(int i=0; i<this.dim; i++) {
