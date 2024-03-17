@@ -4,6 +4,7 @@ import CALab.Cell;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * @author priyankagoel
@@ -24,7 +25,7 @@ public class Agent extends Cell {
     @Override
     public void observe() {
         int count = 0;
-        List<Cell> neighbours = getNeighbours();
+        Set<Cell> neighbours = getNeighbours();
         for (Cell neighbour: neighbours) {
             Agent agent = (Agent) neighbour;
             if(agent.getStatus() == 1) {
@@ -51,6 +52,11 @@ public class Agent extends Cell {
     @Override
     public int getStatus() {
         return this.status;
+    }
+
+    @Override
+    public void nextState() {
+        // TODO(priyankagoel) - To be implemented.
     }
 
     @Override

@@ -3,8 +3,10 @@ package CALab;
 import mvc.Model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashSet;
+
+import java.util.Set;
 
 
 /**
@@ -23,7 +25,6 @@ public abstract class Grid extends Model implements Serializable {
         this.dim = 20;
         this.cells = new Cell[dim][dim];
         populate();
-
     }
 
     protected void populate() {
@@ -37,19 +38,19 @@ public abstract class Grid extends Model implements Serializable {
                 cells[i][j].setNeighbours(this.getNeighbours(this.cells[i][j]));
             }
         }
-
     }
 
     protected abstract Cell makeCell(int row, int col);
-    protected void repopulate(boolean randomly) {
+    public void repopulate(boolean randomly) {
         //Random random = new Random();
         for(int i=0; i<this.dim; i++) {
             for(int j=0; j<this.dim; j++) {
                 this.cells[i][j].reset(randomly);
             }
         }
+        notifySubscribers();
     }
-    protected void updateLoop(int cycles) {
+    public void updateLoop(int cycles) {
         observe();
         for(int cycle=0; cycle<cycles; cycle++) {
             interact();
@@ -59,8 +60,8 @@ public abstract class Grid extends Model implements Serializable {
             System.out.println("time = " + time);
         }
     }
-    private List<Cell> getNeighbours(Cell asker) {
-        List<Cell> neighbours = new ArrayList<>();
+    private Set<Cell> getNeighbours(Cell asker) {
+        Set<Cell> neighbours = new HashSet<>();
         int row = asker.getRow();
         int col = asker.getCol();
         for(int k=0; k<8; k++) {
@@ -91,7 +92,6 @@ public abstract class Grid extends Model implements Serializable {
                 this.cells[i][j].observe();
             }
         }
+        notifySubscribers();
     }
-
-
 }
