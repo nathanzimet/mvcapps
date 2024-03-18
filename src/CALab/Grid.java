@@ -11,11 +11,14 @@ import java.util.Set;
 
 /**
  * @author priyankagoel
+ *
+ * March 17th: Dexter added field radius
  */
 public abstract class Grid extends Model implements Serializable {
     private int time;
     private int dim;
     private Cell[][] cells;
+    private int radius = 1;
 
     public Grid() {
         this.time = 0;
@@ -38,7 +41,7 @@ public abstract class Grid extends Model implements Serializable {
         }
         for(int i=0; i<this.dim; i++) {
             for(int j=0; j<this.dim; j++) {
-                cells[i][j].setNeighbours(this.getNeighbours(this.cells[i][j]));
+                cells[i][j].setNeighbours(this.getNeighbours(this.cells[i][j], radius));
             }
         }
     }

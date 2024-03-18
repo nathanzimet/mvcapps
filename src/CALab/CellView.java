@@ -1,7 +1,13 @@
 package CALab;
 
-//Nathan: I did nothing here except formatting, this is just the professor's code right now. I think changes need to be made
-// that will make more sense once we see the Model.
+/**
+ * Nathan: I did nothing here except formatting, this is just the professor's code right now. I think changes need to be made
+ * that will make more sense once we see the Model.
+ *
+ * 3.18.2024 Dexter Added code to action perfomred method so cells change color
+ *                  when clicked
+
+*/
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +32,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
     @Override
     public void actionPerformed(ActionEvent e) {
         myCell.nextState();
+        setBackground(myCell.getColor());
         // call update needed?
     }
 

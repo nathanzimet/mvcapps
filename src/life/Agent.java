@@ -7,6 +7,11 @@ import java.util.Set;
 
 /**
  * @author priyankagoel
+ *
+ * 3/18/2024 Dexter: Added code to change the cells color as well as the cell status,
+ *                   Revised update method so cells with ambiance of two stay the same
+ *                   Wrote nextState method
+ *
  */
 public class Agent extends Cell {
     protected int status;
@@ -38,9 +43,13 @@ public class Agent extends Cell {
     public void update() {
         if(Society.rebirth.contains(this.ambience)) {
             this.status = 1;
-        } else {
-            this.status = 0;
+            this.color = color.GREEN;
         }
+        else if(Society.death.contains(this.ambience)) {
+            this.status = 0;
+            this.color = color.RED;
+        }
+        notifySubscribers();
     }
 
     @Override
@@ -55,7 +64,13 @@ public class Agent extends Cell {
 
     @Override
     public void nextState() {
-        // TODO(priyankagoel) - To be implemented.
+        if(this.status == 0) {
+            this.status = 1;
+            this.color = color.GREEN;
+        } else {
+            this.status = 0;
+            this.color = color.RED;
+        }
     }
 
     @Override
@@ -64,13 +79,17 @@ public class Agent extends Cell {
             double p = Society.percentAlive/100.0;
             if(flip(p)) {
                 this.status = 1;
+                this.color = color.GREEN;
             } else {
                 this.status = 0;
+                this.color = color.RED;
             }
 
         } else {
             this.status = 0;
+            this.color = color.RED;
         }
+        notifySubscribers();
     }
 
     private boolean flip(double prob) {
