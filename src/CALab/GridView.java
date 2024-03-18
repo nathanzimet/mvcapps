@@ -1,6 +1,13 @@
 package CALab;
 
-//Nathan: 3/16/24 got professors code and made a first attempt at implementation.
+/**
+ * Nathan: 3/16/24 got professors code and made a first attempt at implementation.
+ *
+ * 3.18.2024 Dexter: Added in a call to the update method in the constructor so
+ *                   that when CA lab is opened all cells are zero
+ */
+
+
 
 import mvc.*;
 import java.awt.*;
@@ -30,6 +37,7 @@ public class GridView  extends View {
                 //((Grid)model).getCell(i, j).col = j;
             }
         }
+        update();
     }
 
     public void update() {
